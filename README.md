@@ -26,7 +26,7 @@ npx wrangler d1 create dsbdao
 npx wrangler d1 execute dsbdao --file ./blocks.sql
 
 # Add an App API key
-npx wrangler execute dbsdao --command="INSERT INTO ApiKeys (app_name,api_key) VALUES ('MyApp','12345678')"
+npx wrangler d1 execute dbsdao --command="INSERT INTO ApiKeys (app_name,api_key) VALUES ('3NUM','0x1234123ab1234123ab1234123ab1234123ab')"
 
 # Deploy the worker
 npx wrangler deploy
@@ -53,7 +53,7 @@ npx wrangler -e staging d1 create dsbdao-staging --local
 npx wrangler -e staging d1 execute dsbdao-staging --local --file ./blocks.sql
 
 # Add an App API key
-npx wrangler -e staging execute dbsdao-staging --local --command="INSERT INTO ApiKeys (app_name,api_key) VALUES ('MyApp','12345678')"
+npx wrangler -e staging d1 execute dbsdao-staging --local --command="INSERT INTO ApiKeys (app_name,api_key) VALUES ('MyApp','12345678')"
 
 # Run the local server on port 5757
 npx wrangler -e staging dev --port 5757
