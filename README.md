@@ -1,12 +1,10 @@
 # DSBDAO Blocked Address Database
 
 ## What is DSBDAO
-A group of builders started chatting on [Farcaster](https://warpcast.com/boscolo.eth/0xfd94ac7c) about setting up a community effort to create shared resources for dealing with Spam on the XMTP network. One aspect of this spam prevention is to flat out reject requests from known spam addresses.
-
-
+A group of builders started chatting on [Farcaster](https://warpcast.com/boscolo.eth/0xfd94ac7c) about setting up a community effort to create shared resources for dealing with spam on the XMTP network. One aspect of this spam prevention is to reject requests from known spam addresses. Some spam we are seeing are attempting to create some on chain history, or reverse ENS entries. Adding these addresses to a list of known malicious addresses can help protect users from them.
 
 ## What is DSBDAO Blocked Address Database
-It is a cloudlare worker and D1 database for collecting Ethreeum addresses that an app hs marked as blocked.
+It is a cloudflare worker and D1 database for collecting Ethereum addresses that an app has marked as blocked.
 
 ## Setting up and API Key
 The project uses a simple API Key to allow apps to add addresses.
