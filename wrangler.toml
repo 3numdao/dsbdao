@@ -1,0 +1,15 @@
+name = "dbsdao"
+main = "src/index.ts"
+compatibility_date = "2023-02-07"
+
+[env.production]
+d1_databases = [
+  { binding = "DB", database_name = "dbsdao", database_id = "53f0a894-5868-49e7-aa98-47821c889f5c" }
+]
+
+[env.staging]
+workers_dev = true
+d1_databases = [
+  { binding = "DB", database_name = "dbsdao-staging", database_id = "f833a2ff-53b5-4110-827a-e1345d9ac458" }
+]
+

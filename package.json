@@ -1,0 +1,14 @@
+{
+  "name": "dsbdao",
+  "version": "1.0.0",
+  "main": "index.js",
+  "author": "Chris Boscolo <chrisb@enum.wtf>",
+  "license": "MIT",
+  "devDependencies": {
+    "@cloudflare/workers-types": "^4.20231002.0",
+    "wrangler": "^3.11.0"
+  },
+  "dependencies": {
+    "zod": "^3.22.4"
+  }
+}
