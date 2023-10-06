@@ -2,7 +2,6 @@ name = "dbsdao"
 main = "src/index.ts"
 compatibility_date = "2023-02-07"
 
-[env.production]
 d1_databases = [
   { binding = "DB", database_name = "dbsdao", database_id = "53f0a894-5868-49e7-aa98-47821c889f5c" }
 ]
