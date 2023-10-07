@@ -16,9 +16,11 @@ The API supports two calls. One to add an address to the DB, and one to query th
 The cloudflare project is currently being hosted by [3NUM](https://3num.co), but we will move it to an account managed by the DSBDAO if there is interest.
 
 ## Setting up and API Key
-The project uses aa `X-API-Key` header to gate access to the API. 
+The project uses a `X-API-Key` header to gate access to the API. 
 
 This is admitidly a very centralized v1. If this effort grows in paopularity, this registration step could be moved to a smart contract. This contract could also form the basis of membership into this DAO for managing this effort.
+
+You can request and API key by pinging `chris.boscolo.eth` on XMTP. API keys are intended for projects that want to either contribute blocked addresses or use them for anallysis and curation. 
 
 ### Getting started and deploying to production
 
