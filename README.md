@@ -13,6 +13,8 @@ The initial version of the blocked address database is a simple (one-page) cloud
 
 The API supports two calls. One to add an address to the DB, and one to query the list of adresses.
 
+The cloudflare project is currently being hosted by [3NUM](https://3num.co), but we will move it to an account managed by the DSBDAO if there is interest.
+
 ## Setting up and API Key
 The project uses aa `X-API-Key` header to gate access to the API. 
 
