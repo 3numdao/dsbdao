@@ -1,13 +1,22 @@
-# DSBDAO Blocked Address Database
+# DSBDAO
 
 ## What is DSBDAO
-A group of builders started chatting on [Farcaster](https://warpcast.com/boscolo.eth/0xfd94ac7c) about setting up a community effort to create shared resources for dealing with spam on the XMTP network. One aspect of this spam prevention is to reject requests from known spam addresses. Some spam we are seeing are attempting to create some on chain history, or reverse ENS entries. Adding these addresses to a list of known malicious addresses can help protect users from them.
+A group of builders [started chatting on Farcaster](https://warpcast.com/boscolo.eth/0x05e69062) about a service to curate known scammer addresses/ens names. The thread was started by [@betashop.eth](https://warpcast.com/betashop.eth), founder of Airstack. [@dawufi](https://warpcast.com/dawufi) proposed we set up a repo with to curate address and then named the effort the *Decentralized spam bustaz*, and DSBDAO was born.
 
-## What is DSBDAO Blocked Address Database
-It is a cloudflare worker and D1 database for collecting Ethereum addresses that an app has marked as blocked.
+## DSBDAO Blocked Address Database
+One aspect of this spam prevention is to reject requests from known spam addresses. It cost nothing to generate an Ethereum address, and spammers can generate a unique address for each spam address sent to each victim. But, there are two important reasons we should collect these addresses anyway.
+ 1. By collecting these addresses, any other assets associated with the address such as an NFT or and ENS Name can also be identified and curated into a list of blocked assets.
+ 2. In cases where addresses are reused because the scammers have built up some onchain history, collecting signal that multiple users blocked the address can be used to create an in immediate update to the block list used by applications.
+
+### Where is the DSBDAO Blocked Address Database
+The initial version of the blocked address database is a simple (one-page) cloudflare worker and D1 database that collects Ethereum addresses from registered applications that identified and marked the address as blocked. *This is usually the result of a user blocking the address as spam.*
+
+The API supports two calls. One to add an address to the DB, and one to query the list of adresses.
 
 ## Setting up and API Key
-The project uses a simple API Key to allow apps to add addresses.
+The project uses aa `X-API-Key` header to gate access to the API. 
+
+This is admitidly a very centralized v1. If this effort grows in paopularity, this registration step could be moved to a smart contract. This contract could also form the basis of membership into this DAO for managing this effort.
 
 ### Getting started and deploying to production
 
