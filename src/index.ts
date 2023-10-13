@@ -8,14 +8,13 @@ export interface Env {
 
 export default {
   async fetch(request: Request, env: Env) {
-    
     const apiKeys = await getApiKeys(env);
 
     const { method } = request;
     const { pathname } = new URL(request.url);
     const ipAddress =
       (await request.headers.get("CF-Connecting-IP")) || "0.0.0.0";
-    const providedApiKey = request.headers.get("X-API-Key");
+    const providedApiKey = request.headers.get("X-API-Key") || "";
 
     let response;
 
@@ -26,11 +25,14 @@ export default {
 
     // Handle requests to /block
     if (pathname === "/block") {
-
       if (method === "POST") {
         const schema = zod.object({
           appName: zod.string(),
           ethAddress: zod.string().regex(/^0x[a-fA-F0-9]{40}$/),
+          msg: zod
+            .union([zod.string().length(0), zod.string().max(1000)])
+            .optional()
+            .transform((e) => (e === undefined ? "" : e)),
         });
         const safeParse = schema.safeParse(await request.json());
 
@@ -40,7 +42,7 @@ export default {
           return new Response(JSON.stringify(response), { status: 400 });
         }
 
-        const { appName, ethAddress } = safeParse.data;
+        const { appName, ethAddress, msg } = safeParse.data;
 
         // Check if the provided API key is valid
         if (apiKeys[providedApiKey] !== appName) {
@@ -49,13 +51,19 @@ export default {
         }
 
         await env.DB.prepare(
-          "INSERT INTO Blocks (ip, address, app_name) VALUES (?, ?, ?)"
+          "INSERT INTO Blocks (ip, address, app_name, msg) VALUES (?, ?, ?, ?)"
         )
-          .bind(ipAddress, appName, ethAddress)
+          .bind(ipAddress, appName, ethAddress, msg)
           .run();
 
         response = new Response("Data stored successfully", { status: 200 });
       } else if (method === "GET") {
+        // Check if the provided API key is valid
+        if (!apiKeys[providedApiKey]) {
+          console.log(`Invalid API key from ${ipAddress}: `, providedApiKey);
+          return new Response("Invalid API key", { status: 401 });
+        }
+        
         const { results } = await env.DB.prepare("SELECT * FROM Blocks").all();
         response = Response.json(results);
       } else {

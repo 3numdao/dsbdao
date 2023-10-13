@@ -37,7 +37,7 @@ npx wrangler d1 create dsbdao
 npx wrangler d1 execute dsbdao --file ./blocks.sql
 
 # Add an App API key
-npx wrangler d1 execute dbsdao --command="INSERT INTO ApiKeys (app_name,api_key) VALUES ('3NUM','0x1234123ab1234123ab1234123ab1234123ab')"
+npx wrangler d1 execute dsbdao --command="INSERT INTO ApiKeys (app_name,api_key) VALUES ('3NUM','0x1234123ab1234123ab1234123ab1234123ab')"
 
 # Deploy the worker
 npx wrangler deploy
@@ -58,16 +58,16 @@ To develop on your worker locally, this project uses the staging environment.
 
 ```sh
 # Create the D1 Database
-npx wrangler -e staging d1 create dsbdao-staging --local
+npx wrangler -e staging d1 create dsbdao-dev
 
 # Setup the DB:
-npx wrangler -e staging d1 execute dsbdao-staging --local --file ./blocks.sql
+npx wrangler -e dev d1 execute dsbdao-dev --local --file blocks.sql
 
 # Add an App API key
-npx wrangler -e staging d1 execute dbsdao-staging --local --command="INSERT INTO ApiKeys (app_name,api_key) VALUES ('MyApp','12345678')"
+npx wrangler -e dev d1 execute dsbdao-dev --local --command="INSERT INTO ApiKeys (app_name,api_key) VALUES ('MyApp','12345678')"
 
 # Run the local server on port 5757
-npx wrangler -e staging dev --port 5757
+npx wrangler -e dev dev --port 5757
 ```
 
 #### Downloading data from production
@@ -76,5 +76,5 @@ npx wrangler -e staging dev --port 5757
 mkdir -p wrangler-local-state/d1
 
 # Copy the `id` of the backup, and download the backup into that directory
-npx wrangler d1 backup download dbsdao ${BACKUP_ID} --output ./wrangler-local-state/d1/DB.sqlite3
+npx wrangler d1 backup download dsbdao ${BACKUP_ID} --output ./wrangler-local-state/d1/DB.sqlite3
 ```
